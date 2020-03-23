@@ -28,17 +28,14 @@ sleep(0.5)
 Sign_in_button= driver.find_element_by_xpath("//button[text()='Sign in']")
 Sign_in_button.click()
 sleep(5)
-#falls Pop up aufloppt
-#Skip=driver.find_elements_by_class_name("secondary-action").click()
 
-#ab hier über google bestimmte Sachen suchen
 driver.get('https://www.google.com/')
 sleep(0.5)
 
 search_input=driver.find_element_by_name ("q")
 sleep(2)
 search_input.send_keys(parameters.search_query)
-#allgemeingültige Eingabe von Enter nach Suchanfrage:
+
 search_input.send_keys(Keys.RETURN)
 sleep(3)
 
@@ -53,14 +50,12 @@ for profile in profiles:
     sel=Selector(text=driver.page_source)
     name= sel.xpath("//title/text()").get().split(' | ')[0]
     job_title= sel.xpath("//h2[@class='mt1 t-18 t-black t-normal']/text()").get().strip()
-   # school= ', '.join(sel.xpath('//*[contains(@class, "pv-entity__school-name")]/text()').extract())
     location=sel.xpath("//li[@class='t-16 t-black t-normal inline-block']/text()").get().strip()
     ln_url=driver.current_url
 
     print('/n')
     print(name)
     print(job_title)
-   # print(school)
     print(location)
     print(ln_url)
     print('/n')
